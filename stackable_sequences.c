@@ -4,9 +4,11 @@ main(int argc, char ** argv)
 
 	while ( *++argv != 0x0 )
 	{
+		stack[**argv - 0x30]++;
+
 		if ( **argv - 0x30 > 0 )
 		{
-			if ( ++stack[**argv - 0x30] > stack[**argv - 0x30 - 1] )
+			if ( stack[**argv - 0x30] > stack[**argv - 0x30 - 1] )
 			{
 				return 0;
 			}

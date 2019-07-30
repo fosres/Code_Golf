@@ -10,7 +10,7 @@ main(int argc, char * argv[])
 
 	while ( *++argv != argv[3] )
 	{
-		while ( **argv != 0x0 )
+		while ( argv != &argv[3] && **argv != 0x0 )
 		{
 			putchar(**argv); putchar(0xa); (*argv)++;
 		}
