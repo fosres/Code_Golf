@@ -1,7 +1,6 @@
-
 main(int argc, char * argv[])
 {
-	const int i = strtol(argv[3],0x0,10);
+	const int i = strtol(argv[3],0x0,10)-1;
 
 	char temp = argv[1][i];
 
