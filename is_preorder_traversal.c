@@ -15,42 +15,40 @@ typedef struct tree
 
 static int * test_p = 0;
 
-void insert(tree * root, const int val)
+void insert_root(tree ** root, int in)
 {
-	if ( (root->left == 0x0) && (val < root->val) )
-	{
-		root->left = (tree *)calloc(1,sizeof(tree));
+  if (*root == NULL)
+  {
+    *root = (tree *)calloc(1,sizeof(tree));
 
-		root->left->val = val;
-	}
+    (*root)->val = in;
 
-	else if ( (root->right == 0x0) && (val >= root->val) )
-	{
-		root->right = (tree *)calloc(1,sizeof(tree));
+    return;
+  }
 
-		root->right->val = val;
-	}
-	
-	else if ( val < root->val )
-	{
-		insert(root->left,val);	
-	}
+  else if (in < (*root)->val)
+  {
+    insert_root(&((*root)->left),in);
+  }
 
-	else if ( val >= root->val )
-	{
-		insert(root->right,val);	
-	}
+  else
+  {
+    insert_root(&((*root)->right),in);
+  }
 }
 
-void preorder(tree * root,int * test_p)
+void preorder(tree * root)
 {
-	if ( root == 0x0 ) { return; }
+	if ( root == 0x0 ) { printf("\n"); return; }
 
-	*test_p++ = root->val;
+	
+		*test_p++ = root->val;
 
-	preorder(root->left,test_p);
+		printf("%d ",root->val);
 
-	preorder(root->right,test_p);
+		preorder(root->left);
+
+		preorder(root->right);
 
 }
 
@@ -70,11 +68,28 @@ int main(int argc, char ** argv)
 
 	while ( argv[++i] != 0x0 )
 	{
-		insert(root,strtol(argv[i],0x0,10));
+		insert_root(&root,strtol(argv[i],0x0,10));
 	}
+	
+	printf("Raw preorder traversal:\n\n");
 
-	preorder(root,test_p);
+	preorder(root);
 
+	test_p = test_list;
+	
+	printf("List iteration:\n\n");
+
+	i = 0;
+
+	while ( i < (argc-1) )
+	{
+		printf("%d\n",*test_p);
+
+		test_p++;
+
+		i++;
+	}
+	
 	test_p = test_list;
 
 	i = 1;
@@ -92,6 +107,5 @@ int main(int argc, char ** argv)
 	}
 
 	return 1;	
-	
 }
 
