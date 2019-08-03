@@ -39,12 +39,9 @@ void insert_root(tree ** root, int in)
 
 void preorder(tree * root)
 {
-	if ( root == 0x0 ) { printf("\n"); return; }
-
+	if ( root == 0x0 ) {  return; }
 	
 		*test_p++ = root->val;
-
-		printf("%d ",root->val);
 
 		preorder(root->left);
 
@@ -71,24 +68,7 @@ int main(int argc, char ** argv)
 		insert_root(&root,strtol(argv[i],0x0,10));
 	}
 	
-	printf("Raw preorder traversal:\n\n");
-
 	preorder(root);
-
-	test_p = test_list;
-	
-	printf("List iteration:\n\n");
-
-	i = 0;
-
-	while ( i < (argc-1) )
-	{
-		printf("%d\n",*test_p);
-
-		test_p++;
-
-		i++;
-	}
 	
 	test_p = test_list;
 
