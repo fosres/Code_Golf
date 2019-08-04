@@ -1,7 +1,7 @@
 row(int s[],int o[],int i)
 {
-	if(i==2){printf("%d %d\n",i,i);o[0]=1;o[1]=1;}
-	else if(i==1){printf("%d\n",i);o[0]=1;}
+	if(i==2){printf("%d %d\n",1,1);o[0]=1;o[1]=1;}
+	else if(i==1){printf("%d\n",1);o[0]=1;}
 	else
 	{
 		int j = 0; int *s_p=s,*o_p=o;*o_p++ =1;printf("1 ");
