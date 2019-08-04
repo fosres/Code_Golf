@@ -8,40 +8,55 @@ typedef struct tree
 
 } tree;
 
-insert_root(tree ** root, int in)
+i(tree ** r, int in)
 {
-  if (*root == NULL)
+  if (*r == 0)
   {
-    *root = (tree *)calloc(1,sizeof(tree));
+    *r = (tree *)calloc(1,sizeof(tree));
 
-    (*root)->val = in;
+    (*r)->v = in;
 
     return;
   }
 
-  else if (in < (*root)->val)
+  else if (in < (*r)->v)
   {
-    insert_root(&((*root)->left),in);
+    i(&((*r)->l),in);
   }
 
   else
   {
-    insert_root(&((*root)->right),in);
+    i(&((*r)->r),in);
   }
 }
 
+
+
 int t = 0, c = 0;
 
-h(tree * r)
+height(tree * r)
 {
-	if ( r->l == 0 && r->r == 0 )
-	{
-		if ( c > t ){t=c;}
-					
-		c--; return;
-	}	
+	if (!r){if(c>t){t=c;}return;}
+
+	if ( r->l){ c++;height(r->l);}
 	
-	if ( h(r->l) ){c++;h(r->l);}
+	c--;
+
+	if ( r->r){c++;height(r->r);}
 	
-	if ( h(r->r) ){c++;h(r->r);}
+	c--;
+
+}
+
+main(int argc,char**argv)
+{
+	tree * r = (tree *)calloc(1,sizeof(tree));
+
+	while(*++argv != 0){i(&r,strtol(*argv,0,10));}
+	
+	height(r);
+
+	return t;
+	
+
 }
