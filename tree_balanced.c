@@ -1,21 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct tree
+typedef struct T
 {
-	struct tree * l;
+	struct T * l;
 
-	struct tree * r;
+	struct T * r;
 
 	int v;
 
-} tree;
+} T;
 
-void insert_root(tree ** root, int in)
+void insert_root(T ** root, int in)
 {
   if (!*root)
   {
-    *root = (tree *)calloc(1,sizeof(tree));
+    *root = (T *)calloc(1,sizeof(T));
 
     (*root)->v = in;
 
@@ -33,9 +33,9 @@ void insert_root(tree ** root, int in)
   }
 }
 
-max(int l,int r){if(l>r)return l;else return r;}h(tree*r){if(!r)return 0;int lh=1+h(r->l);int rh=1+h(r->r);return max(lh,rh);}
+h(T*r){r=r?1+h(h(r->l)>h(r->r)?r->l:r->r):0;}
 
-b(tree *r)
+b(T*r)
 {
 	if (r->l&&!b(r->l))return 0;
 	if (r->r&&!b(r->r))return 0;
@@ -44,7 +44,7 @@ b(tree *r)
 }
 int main(int argc,char**argv)
 {
-	tree * r = (tree *)calloc(1,sizeof(tree));
+	T * r = (T *)calloc(1,sizeof(T));
 
 	r->v = strtol(argv[1],0,10);
 
