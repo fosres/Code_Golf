@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-void row(int s[],int o[],int n)
-{	int h = 1;
+void row(int n)
+{	
+	static int s[25],o[25];	
+	int h = 1;
 
 	while (h <= n)
 	{
@@ -38,12 +40,8 @@ void row(int s[],int o[],int n)
 int main(int argc,char ** argv)
 {
 	const int n = strtol(argv[1],0,10);
-
-	static int s[25], o[25];
-
-	memset(s,0,100); memset(o,0,100);
 	
-	row(s,o,n);
+	row(n);
 }
 
 

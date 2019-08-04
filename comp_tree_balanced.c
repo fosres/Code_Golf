@@ -41,9 +41,11 @@ h(T*r){r=r?1+h(h(r->l)>h(r->r)?r->l:r->r):0;}
 
 b(T*r)
 {
+	return (r->l&&r->r&&b(r->l)&&b(r->r)) ? abs(h(r->l)-h(r->r))<=1:0;
+#if 0
 	if (r->l&&!b(r->l))return 0;
 	if (r->r&&!b(r->r))return 0;
-	
+#endif
 	return abs(h(r->l)-h(r->r)) <= 1;
 }
 int main(int argc,char**argv)
