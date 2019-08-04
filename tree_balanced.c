@@ -35,6 +35,13 @@ void insert_root(tree ** root, int in)
 
 max(int l,int r){if(l>r)return l;else return r;}h(tree*r){if(!r)return 0;int lh=1+h(r->l);int rh=1+h(r->r);return max(lh,rh);}
 
+b(tree *r)
+{
+	if (r->l&&!b(r->l))return 0;
+	if (r->r&&!b(r->r))return 0;
+	
+	return abs(h(r->l)-h(r->r)) <= 1;
+}
 int main(int argc,char**argv)
 {
 	tree * r = (tree *)calloc(1,sizeof(tree));
@@ -45,5 +52,5 @@ int main(int argc,char**argv)
 
 	while(*++argv){insert_root(&r,strtol(*argv,0,10));}
 	
-	return h(r);	
+	return b(r);	
 }
