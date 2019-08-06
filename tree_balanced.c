@@ -37,11 +37,7 @@ void insert_root(T ** root, int in)
   }
 }
 
-//max(int l,int r){if(l>r)return l;else return r;}h(T*r){if(!r)return 0;int lh=1+h(r->l);int rh=1+h(r->r);return max(lh,rh);}
-
-h(T*r){r=r?1+h(h(r->l)>h(r->r)?r->l:r->r):0;}
-//b(T*r){return r->l&&!b(r->l)||r->r&&!b(r->r)?0:abs(h(r->l)-h(r->r))<=1;}
-b(T*r){return abs(h(r->l)-h(r->r))<=1;}
+h(T*r){r=r?1+h(h(r->l)>h(r->r)?r->l:r->r):0;}b(T*r){return r->l&&!b(r->l)||r->r&&!b(r->r)?0:abs(h(r->l)-h(r->r))<=1;}
 
 int main(int argc,char**argv)
 {
@@ -53,5 +49,6 @@ int main(int argc,char**argv)
 
 	while(*++argv){insert_root(&r,strtol(*argv,0,10));}
 	
+	printf("%d\n",b(r));	
 	return b(r);	
 }
