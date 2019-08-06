@@ -40,9 +40,8 @@ void insert_root(T ** root, int in)
 //max(int l,int r){if(l>r)return l;else return r;}h(T*r){if(!r)return 0;int lh=1+h(r->l);int rh=1+h(r->r);return max(lh,rh);}
 
 h(T*r){r=r?1+h(h(r->l)>h(r->r)?r->l:r->r):0;}
-//b(T*r){if(r->l&&!b(r->l))return 0;if(r->r&&!b(r->r))return 0;return abs(h(r->l)-h(r->r)) <= 1;}
-
-b(T*r){return r->l&&!b(r->l)||r->r&&!b(r->r) ? 0:return abs(h(r->l)-h(r->r)) <= 1;}
+//b(T*r){return r->l&&!b(r->l)||r->r&&!b(r->r)?0:abs(h(r->l)-h(r->r))<=1;}
+b(T*r){return abs(h(r->l)-h(r->r))<=1;}
 
 int main(int argc,char**argv)
 {
