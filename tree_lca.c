@@ -64,9 +64,10 @@ main(int argc,char**argv)
 {
 	T*r=(T*)calloc(1,sizeof(T));
 	r->v=strtol(argv[1],0,10);
-	argv=&argv[1];
-	while(*++argv){insert_root(&r,strtol(*argv,0,10));}
-	T*M=find_num(r,strtol(argv[1],0,10));
-	T*N=find_num(r,strtol(argv[2],0,10));
-//	printf("%p\n",lca(0,r,M,N));	
+	char**argv_p=&argv[1];
+	while(*++argv_p){insert_root(&r,strtol(*argv_p,0,10));}
+	argv_p=&argv[0];
+	T*M=find_num(r,strtol(argv[2],0,10));
+	T*N=find_num(r,strtol(argv[3],0,10));
+	printf("lca: %p lca_v:%d\n",lca(0,r,M,N),lca(0,r,M,N)->v);	
 }
