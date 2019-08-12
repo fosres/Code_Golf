@@ -68,6 +68,22 @@ insert_symm(T**r,int in)
 	ON_RIGHT=!ON_RIGHT;
 }
 
+double_insert_symm(T**r,int in)
+{
+	if(!(*r)->l&&!(*r)->r)
+	{
+		(*r)->l=(T*)calloc(1,sizeof(T));
+		(*r)->l->v=in;
+		(*r)->r=(T*)calloc(1,sizeof(T));
+		(*r)->r->v=in;
+		return;
+	}
+
+	double_insert_symm(&((*r)->l),in);
+	double_insert_symm(&((*r)->r),in);
+
+}
+
 symmetric(T*l,T*r)
 {
 	if(!l&&!r)return 1;
@@ -78,12 +94,23 @@ symmetric(T*l,T*r)
 	else return 1;
 }
 
+in_order(T*r)
+{
+	if (!r)return;
+
+	in_order(r->l);
+	printf("%d ",r->v);
+	in_order(r->r);
+
+}
+
 main(int argc,char**argv)
 {
 	T*r=(T*)calloc(1,sizeof(T));
 	r->v=strtol(argv[1],0,10);
 	char**argv_p=&argv[1];
-	while(*++argv_p){insert_symm(&r,strtol(*argv_p,0,10));}
+	while(*++argv_p){double_insert_symm(&r,strtol(*argv_p,0,10));}
+	in_order(r);putchar(0xa);
 	return symmetric(r->l,r->r);
 
 }
