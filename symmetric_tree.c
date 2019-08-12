@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 
 typedef struct T
@@ -41,6 +42,32 @@ T*find_num(T*r,int target)
 	else{find_num(r->r,target);}	
 }
 
+bool ON_RIGHT = 0;
+
+insert_symm(T**r,int in)
+{
+	if (!ON_RIGHT)
+	{
+		T**l=r;
+
+		while (*l){l=&((*l)->l);}
+		
+		*l=(T*)calloc(1,sizeof(T));
+
+		(*l)->v=in;
+
+	}
+
+	else
+	{
+		T**r_i=r;
+		while(*r_i){r_i=&((*r_i)->r);}
+		*r_i=(T*)calloc(1,sizeof(T));
+		(*r_i)->v=in;
+	}
+	ON_RIGHT=!ON_RIGHT;
+}
+
 symmetric(T*l,T*r)
 {
 	if(!l&&!r)return 1;
@@ -54,8 +81,9 @@ symmetric(T*l,T*r)
 main(int argc,char**argv)
 {
 	T*r=(T*)calloc(1,sizeof(T));
-	r->v=strtol(argv[3],0,10);
-	char**argv_p=&argv[3];
-	while(*++argv_p){insert_root(&r,strtol(*argv_p,0,10));}
+	r->v=strtol(argv[1],0,10);
+	char**argv_p=&argv[1];
+	while(*++argv_p){insert_symm(&r,strtol(*argv_p,0,10));}
+	return symmetric(r->l,r->r);
 
 }
