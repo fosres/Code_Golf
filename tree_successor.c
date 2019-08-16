@@ -40,16 +40,24 @@ T*find_num(T*r,int target)
 }
 
 _Bool I=0;
-s(T*r,T*i)
-{if(!r)return;s(r->l,i);if(I){printf("%p %d\n",r,r->v);I=0;return;}if(r==i){I=1;}s(r->r,i);}
+s(T*r,T*i){if(!r)return;s(r->l,i);if(I){printf("%p %d\n",r,r->v);I=0;return;}if(r==i){I=1;}s(r->r,i);}
+
+in_order(T*r)
+{
+	if(!r)return;
+	in_order(r->l);
+	printf("%d ",r->v);
+	in_order(r->r);
+}
 
 main(int argc,char**argv)
 {
 	T*r=(T*)calloc(1,sizeof(T));
-	r->v=strtol(argv[3],0,10);
-	char**argv_p=&argv[3];
+	r->v=strtol(argv[2],0,10);
+	char**argv_p=&argv[2];
 	while(*++argv_p){insert_root(&r,strtol(*argv_p,0,10));}
 	T*M=find_num(r,strtol(argv[1],0,10));
+	in_order(r);putchar(0xa);
 	s(r,M);
 }
 
