@@ -8,6 +8,13 @@ typedef struct T
 
 } T;
 
+typedef struct L
+{
+	struct L * n;
+
+	int v;
+} L;
+
 void insert_root(T ** root, int in)
 {
   if (!*root)
@@ -30,33 +37,43 @@ void insert_root(T ** root, int in)
   }
 }
 
-T*find_num(T*r,int target)
+L*i(L**n,int i)
 {
-	if (!r)return 0;
-	if (r->v==target){return r;}
-	else if(target<r->v){find_num(r->l,target);}
-	else{find_num(r->r,target);}	
+	while(*n){n=&((*n)->n);}
+	*n=(L*)calloc(1,sizeof(L));
+	(*n)->v=i;
+	return *n;
 }
 
-_Bool I=0;
-s(T*r,T*i){if(!r)return;s(r->l,i);if(I){printf("%p %d\n",r,r->v);I=0;return;}if(r==i){I=1;}s(r->r,i);}
 
-in_order(T*r)
+b(T*r,L*l)
 {
 	if(!r)return;
-	in_order(r->l);
-	printf("%d ",r->v);
-	in_order(r->r);
+	b(r->l,l);
+	if(!r->l&&!r->r){l=i(&l,r->v);}
+	b(r->r,l);
+}
+
+print_list(L*n)
+{
+	while(n)
+	{
+		printf("%d ",n->v);n=n->n;
+	}
+	
+	putchar(0xa);
 }
 
 main(int argc,char**argv)
 {
 	T*r=(T*)calloc(1,sizeof(T));
-	r->v=strtol(argv[2],0,10);
-	char**argv_p=&argv[2];
+	r->v=strtol(argv[1],0,10);
+	char**argv_p=&argv[1];
 	while(*++argv_p){insert_root(&r,strtol(*argv_p,0,10));}
-	T*M=find_num(r,strtol(argv[1],0,10));
-	in_order(r);putchar(0xa);
-	s(r,M);
+	L*l=(L*)calloc(1,sizeof(L));
+	b(r,l);
+	l=l->n;
+	print_list(l);
 }
+
 
