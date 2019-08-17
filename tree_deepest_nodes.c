@@ -29,23 +29,36 @@ void insert_root(T ** root, int in)
     insert_root(&((*root)->r),in);
   }
 }
-in_order(T*r)
+
+int depth=0,max=0;
+
+d(T*r)
 {
 	if(!r)return;
 
-	in_order(r->l);
-	printf("%d ",r->v);
-	in_order(r->r);
+	depth++;d(r->l);depth--;
+	
+	if(!r->l&&!r->r)
+	{
+		if( depth > max)
+		{ max = depth; printf("\r%d: %d \0",max,r->v); }
+
+		else
+		{
+			printf("%d \0",r->v);
+		}
+
+	}
+
+	depth++;d(r->r);depth--;
 }
-i(T*r){if(!r){return;}i(r->l);if(!r->l&&!r->r){printf("%d ",r->v);}i(r->r);}l(T*r){if(!r){return;}if(r->l||r->r)printf("%d ",r->v);l(r->l);}ri(T*r){if(!r)return;ri(r->r);if(r->l||r->r){printf("%d ",r->v);}}e(T*r){l(r);i(r);ri(r->r);}
+
 main(int argc,char**argv)
 {
 	T*r=(T*)calloc(1,sizeof(T));
 	r->v=strtol(argv[1],0,10);
 	char**argv_p=&argv[1];
 	while(*++argv_p){insert_root(&r,strtol(*argv_p,0,10));}
-	in_order(r);
-	putchar(0xa);
-	e(r);
+	d(r);putchar(0xa);
 }
 
