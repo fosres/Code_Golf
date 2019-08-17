@@ -40,12 +40,12 @@ d(T*r)
 	
 	if(!r->l&&!r->r)
 	{
-		if( depth > max)
-		{ max = depth; printf("\r%d: %d \0",max,r->v); }
+		if ( depth > max)
+		{ max = depth; printf("\33[2K\r%d: %d ",max,r->v); }
 
-		else
+		else if (depth==max)
 		{
-			printf("%d \0",r->v);
+			printf("%d ",r->v);
 		}
 
 	}
