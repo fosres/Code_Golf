@@ -7,6 +7,13 @@ type T struct {
 	v int	
 }
 
+func insert(r**T,i int){
+	if(*r==nil){*r=&T{nil,nil,i};return}
+	if (i<(*r).v){insert(&((*r).l),i)
+	}else{insert(&((*r).r),i)}
+}
+
+
 func d(r*T)int{
 	d:=0;for r!=nil{r=(*r).l;d++};return d
 }
@@ -23,6 +30,7 @@ func in_order(r*T,a []*T){
 }
 
 func main(){v:=0;var e error;r:=&T{nil,nil,nil,0}
-	for i:=1;i<len(os.Args);i++{if v,e = strconv.Atoi(os.Args[i];e != nil {panic(e)};if i==1
+	for i:=1;i<len(os.Args);i++ {if v,e = strconv.Atoi(os.Args[i]);e != nil {panic(e)};if i==1{(*r).v=v}else{insert(&r,v)}
 		
+}
 }

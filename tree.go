@@ -33,8 +33,6 @@ func post_order(r*T){
 	post_order((*r).r)
 	fmt.Printf("%d ",(*r).v)
 }
-func test();
-func test(){}
 func main(){
 	v:=0;var e error;var r*T=&T{nil,nil,0}
 	for i:=1;i<len(os.Args);i++{if v,e=strconv.Atoi(os.Args[i]);e!=nil{panic(e)}		
