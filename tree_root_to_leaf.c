@@ -32,7 +32,7 @@ void insert_root(T ** root, int in)
 
 static char stack[65];
 
-static char *stack_p=&stack[0]-1;unsigned long long int a=0;
+static char * stack_p=&stack[0]-1;unsigned long long int a=0;
 
 ri(T*r)
 {
