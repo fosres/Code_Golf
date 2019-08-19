@@ -35,7 +35,7 @@ func main(){
 	if (i==1){s=v}else if (i==2){(*r).v=v}else {insert(&r,v)}
 }
 	pre_order(r)
-	Printf("%d\n",check_w(r,s))
+	Printf("\nIs %d a legitimate sum?: %t\n",s,check_w(r,s))
 }
 
 
