@@ -32,21 +32,31 @@ void insert_root(T ** root, int in)
 
 static char stack[65];
 
-static char * stack_p=&stack[0]-1;unsigned long long int a=0;
+static char * stack_p=&stack[0]-1;unsigned long long int a=0,b=0;
 
 ri(T*r)
 {
-*++stack_p=r->v+0x30;
-if(!r->l&&!r->r){a+=strtol(stack,0,2);return;}
-ri(r->l);*stack_p--=0;ri(r->r);*stack_p--=0;
+if(!r)return;
+a|=r->v;
+if(!r->l&&!r->r){b+=a;return;}
+a<<=1;ri(r->l);a>>=1;a<<=1;ri(r->r);a>>=1;
+}
+
+in_order(T*r)
+{
+if(!r)return;
+in_order(r->l);
+printf("%d ",r->v);
+in_order(r->r);
 }
 
 main(int argc,char**argv)
 {
 	T*r=(T*)calloc(1,sizeof(T));
-	r->v=strtol(argv[1],0,10);
+	r->v=argv[1][0]-0x30;	
 	char**argv_p=&argv[1];
-	while(*++argv_p){insert_root(&r,strtol(*argv_p,0,10));}
+	while(*++argv_p){insert_root(&r,**argv_p-0x30);}
+	in_order(r);printf("\n");
 	ri(r);
-	printf("%llu",a);
+	printf("%llu\n",b);
 }
