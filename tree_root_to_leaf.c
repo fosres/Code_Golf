@@ -50,7 +50,7 @@ printf("%d ",r->v);
 in_order(r->r);
 }
 
-main(int argc,char**argv)
+main(int argc,char*argv[])
 {
 	T*r=(T*)calloc(1,sizeof(T));
 	r->v=argv[1][0]-0x30;	

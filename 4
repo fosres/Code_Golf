@@ -1,0 +1,17 @@
+void inorder(T*r,int s)
+{
+	T*t[s];t[0]=r;T**f=&t[0],**h=0;
+
+	while(f>=&t[0])
+	{
+		if((*f)->l){*(f+1)=(*f)->l;++f;}
+		else{*f=0;}
+	}
+
+	while( (f>=&t[0]) && !(*f)->r )
+	{
+		printf("%d ",(*f)->v);
+	}
+
+	if( (*f)->r ){*h=(*f)->r;printf("%d ",(*f)->v);*f=*h;
+}
