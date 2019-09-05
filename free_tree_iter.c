@@ -54,6 +54,33 @@ f(T*r,int s)
 	putchar(0xa);
 }
 
+#if 0 
+//Normal Verson:
+f(T*r,int s)
+{
+	T*t[s];t[0]=r;T**f=&t[0],**e=&t[0];
+	
+	while(f<=e)
+	{
+		if(*f)
+		{
+			if((*f)->l)
+			{
+				*++e=(*f)->l;
+			}
+
+			if((*f)->r)
+			{
+				*++e=(*f)->r;
+			}
+		}
+
+		printf("%p:%d ",*f,(*f)->v);free(*f);f++;
+	}
+	putchar(0xa);
+}
+#endif
+
 #if 0
 //Competitive version
 f(T*r,int s){T*t[s];t[0]=r;T**f=&t[0],**e=&t[0];while(f<=e){if(*f){if((*f)->left){*++e=(*f)->left;}if((*f)->right){*++e=(*f)->right;}}free(*f);f++;}}
