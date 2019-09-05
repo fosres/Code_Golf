@@ -31,9 +31,9 @@ void insert_root(T ** root, int in)
 }
 
 
-void inorder(T*r,int s)
+void inorder(T**r,int s)
 {
-	T*t[s+1];t[0]=r;T**f=&t[0],*h=0;
+	T*t[s+1];t[0]=*r;T**f=&t[0],*h=0;
 
 	while(f>=&t[0])
 	{
@@ -42,7 +42,7 @@ void inorder(T*r,int s)
 			if((*f)->l){*(f+1)=(*f)->l;++f;}
 			else{*++f=0;}
 		}
-//bug: *f == 0
+		
 		while( (f>=&t[0]) && !((*f)->r) )
 		{
 			printf("%d ",(*f)->v);f--;
